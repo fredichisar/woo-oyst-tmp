@@ -12,6 +12,8 @@ script:
   - echo 'Tested'
 before_deploy:
   - "./src/lib/oyst-php-master/get-sdk.sh"
+
+after_deploy:
   - "./scripts/deploy.sh"
 
 deploy:
@@ -20,7 +22,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - scripts/deploy.sh/
+    - scripts/deploy.sh
   on:
     tags: true
     condition: "$AUTO_DEPLOY = true"
