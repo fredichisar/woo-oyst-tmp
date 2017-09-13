@@ -8,8 +8,8 @@ GitHub_Release=
 
 # Do not change under this comment
 
-#ScriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#cd $ScriptDir
+ScriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $ScriptDir
 rm -rf $GitHub_Owner-$GitHub_Repo-* $GitHub_Repo $GitHub_Repo.tar.gz
 
 if [ -n "$GitHub_Release" ]; then

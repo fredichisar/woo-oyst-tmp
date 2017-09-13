@@ -13,13 +13,18 @@ fi
 
 
 
-WP_ORG_USERNAME="oyst1click"
-PLUGIN="woo-oyst"
+WP_ORG_USERNAME="oyst1click" #ok
+PLUGIN="woo-oyst" #ok
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
-PLUGIN_BUILDS_PATH="$PROJECT_ROOT/builds"
-PLUGIN_BUILD_CONFIG_PATH="$PROJECT_ROOT/build-cfg"
-VERSION=$(/usr/bin/php -f "$PLUGIN_BUILD_CONFIG_PATH/utils/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
-ZIP_FILE="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION.zip"
+
+PLUGIN_BUILDS_PATH="$PROJECT_ROOT/src"
+
+VERSION= "v1.0.0"
+#VERSION=$(/usr/bin/php -f "$PLUGIN_BUILD_CONFIG_PATH/utils/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
+#Version -> get from tag of readme file
+
+#ZIP_FILE="$PLUGIN_BUILDS_PATH/$PLUGIN-$VERSION.zip"
+ZIP_FILE="$PLUGIN_BUILDS_PATH/$PLUGIN.zip"
 
 # Ensure the zip file for the current version has been built
 if [ ! -f "$ZIP_FILE" ]; then

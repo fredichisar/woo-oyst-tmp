@@ -8,13 +8,13 @@ php:
   - 7.0
 
 script:
-  - "./src/lib/oyst-php-master/get-sdk.sh"
+  - "./src/lib/get-sdk.sh"
 
 before_deploy:
   - "./scripts/before_deploy.sh"
 
-#after_deploy:
-#  - "./scripts/deploy.sh"
+after_deploy:
+  - "./scripts/deploy.sh"
 
 deploy:
   provider: releases
