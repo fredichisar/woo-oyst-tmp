@@ -8,10 +8,10 @@ php:
   - 7.0
 
 script:
-  # Run your tests here.
-  - echo 'Tested'
-before_deploy:
   - "./src/lib/oyst-php-master/get-sdk.sh"
+
+before_deploy:
+  - "./scripts/before_deploy.sh"
 
 after_deploy:
   - "./scripts/deploy.sh"
@@ -22,7 +22,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - scripts/deploy.sh
+    - travis_release/woo-oyst.zip
   on:
     tags: true
     condition: "$AUTO_DEPLOY = true"
