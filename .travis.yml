@@ -13,8 +13,8 @@ script:
 before_deploy:
   - "./scripts/before_deploy.sh"
 
-after_deploy:
-  - "./scripts/deploy.sh"
+#after_deploy:
+#  - "./scripts/deploy.sh"
 
 deploy:
   provider: releases
@@ -22,7 +22,7 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - travis_release/woo-oyst.zip
+    - src/woo-oyst.zip
   on:
     tags: true
     condition: "$AUTO_DEPLOY = true"
