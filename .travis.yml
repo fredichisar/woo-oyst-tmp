@@ -23,6 +23,7 @@ deploy:
   file_glob: true
   file:
     - src/woo-oyst.zip
+    - src/woo-oyst.tar.gz
   on:
     tags: true
     condition: "$AUTO_DEPLOY = true"
