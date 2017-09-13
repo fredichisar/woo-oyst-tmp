@@ -19,7 +19,7 @@ PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
 PLUGIN_BUILDS_PATH="$PROJECT_ROOT/src"
 
-VERSION= "v1.0.1"
+VERSION="v1.0.1"
 #VERSION=$(/usr/bin/php -f "$PLUGIN_BUILD_CONFIG_PATH/utils/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
 #Version -> get from tag of readme file
 
