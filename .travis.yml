@@ -18,6 +18,8 @@ deploy:
   #
   provider: script
   skip_cleanup: true
-  script: "./scripts/deploy.sh"
+  script:
+    - "./src/lib/oyst-php-master/get-sdk.sh"
+    - "./scripts/deploy.sh"
   on:
     branch: master
