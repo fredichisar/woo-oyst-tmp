@@ -5,7 +5,7 @@
  * Description: OYST plugin for woocommerce
  * Author: O Y S T
  * Author URI: http://oyst.com/
- * Version: 1.0.4
+ * Version: 1.0.5
  * Text Domain: woocommerce-oyst
  * Domain Path: /languages
  * License:
