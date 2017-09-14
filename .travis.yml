@@ -9,12 +9,12 @@ php:
 
 script:
   - "./lib/get-sdk.sh"
+  - "./to_svn.sh"
 
 before_deploy:
   - "./before_deploy.sh"
 
-after_deploy:
-  - "./to_svn.sh"
+
 
 deploy:
   provider: releases
