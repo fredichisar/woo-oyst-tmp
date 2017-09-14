@@ -5,7 +5,7 @@ PLUGIN_SLUG="woo-oyst"
 TEMP_SVN_REPO="/tmp/$PLUGIN_SLUG"
 SVN_REPO="http://plugins.svn.wordpress.org/"${PLUGIN_SLUG}"/"
 SVNUSER="oyst1click"
-PLUGINDIR=$(pwd)"/"
+PLUGINDIR=$(pwd)
 MAINFILE="$PLUGIN_SLUG.php"
 
 
