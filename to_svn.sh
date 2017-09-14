@@ -1,15 +1,4 @@
 #! /bin/bash
-# Based on hard work by Dean Clatworthy, Brent Shepherd, Patrick Rauland, Ben Balter and Gary Jones
-# See https://github.com/ihorvorotnov/wordpress-plugin-git-to-svn-deploy for instructions and credits.
-
-echo
-echo "WordPress Plugin Git to SVN Deploy v1.0.0"
-echo
-echo "Step 1. Let's collect some information first."
-echo
-echo "Default values are in brackets - just hit enter to accept them."
-echo
-
 
 
 # Set up some default values. Feel free to change these in your own script
@@ -18,35 +7,9 @@ PLUGINSLUG="woo-oyst"
 SVNPATH="/tmp/$PLUGINSLUG"
 SVNURL="http://plugins.svn.wordpress.org/$PLUGINSLUG"
 SVNUSER="oyst1click"
-default_plugindir="$CURRENTDIR/$PLUGINSLUG"
+SVNPWD=WP_ORG_PASSWORD
+PLUGINDIR=CURRENTDIR
 MAINFILE="$PLUGINSLUG.php"
-
-
-
-echo "1e) Your local plugin root directory, the Git repo. No trailing slash."
-printf "($default_plugindir): "
-read -e  input
-input="${input%/}" # Strip trailing slash
-PLUGINDIR="${input:-$default_plugindir}" # Populate with default if empty
-echo
-
-echo "That's all of the data collected."
-echo
-echo "Slug: $PLUGINSLUG"
-echo "Temp checkout path: $SVNPATH"
-echo "Remote SVN repo: $SVNURL"
-echo "SVN username: $SVNUSER"
-echo "Plugin directory: $PLUGINDIR"
-echo "Main file: $MAINFILE"
-echo
-
-printf "OK to proceed (Y|n)? "
-read -e input
-PROCEED="${input:-y}"
-echo
-
-# Allow user cancellation
-if [ "$PROCEED" != "y" ]; then echo "Aborting..."; exit 1; fi
 
 
 # Let's begin...
@@ -73,19 +36,10 @@ elif [ "$PLUGINVERSION" = "$READMEVERSION" ]; then
 fi
 
 
-echo
 echo "Creating local copy of SVN repo trunk ..."
 svn checkout $SVNURL $SVNPATH --depth immediates
 svn update --quiet $SVNPATH/trunk --set-depth infinity
 
-svn propset svn:mime-type image/jpeg *.jpg
-
-echo "Ignoring GitHub specific files"
-svn propset svn:ignore "README.md
-LICENSE
-Thumbs.db
-.git
-.gitignore" "$SVNPATH/trunk/"
 
 
 
@@ -95,7 +49,7 @@ cd $SVNPATH/trunk/
 svn status | grep -v "^.[ \t]*\..*" | grep "^\!" | awk '{print $2}' | xargs svn del
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
-svn commit --username=$SVNUSER -m "Preparing for $PLUGINVERSION release"
+svn commit --username=$SVNUSER --password=$SVNPWD -m "Preparing for $PLUGINVERSION release"
 
 
 

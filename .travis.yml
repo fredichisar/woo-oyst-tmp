@@ -12,6 +12,7 @@ script:
 
 before_deploy:
   - "./before_deploy.sh"
+  - "./to_svn.sh"
 
 after_deploy:
   - "./deploy.sh"
