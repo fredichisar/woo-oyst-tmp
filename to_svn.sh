@@ -9,7 +9,6 @@ PLUGINDIR=$(pwd)
 MAINFILE="$PLUGIN_SLUG.php"
 
 
-
 # Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
 PLUGINVERSION=`grep "Version:" $PLUGINDIR/$MAINFILE | awk -F' ' '{print $NF}' | tr -d '\r'`
 echo "$MAINFILE version: $PLUGINVERSION"
@@ -31,12 +30,15 @@ then
 	echo "Checking out WordPress.org plugin repository"
 	svn checkout $SVN_REPO  || { echo "Unable to checkout repo."; exit 1; }
 fi
-ls -la
 cd $PLUGIN_SLUG
 
-svn rm trunk/*
+svn rm trunk
+mkdir trunk
 
-cp -r ../* trunk
+
+rsync -av --exclude='woo-oyst' --exclude='.git' ../* trunk
+
+
 
 rm -rf trunk/woo-oyst *.sh *.yml
 
