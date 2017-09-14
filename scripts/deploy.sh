@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [[ -z "$TRAVIS" ]]; then
-	echo "Script is only to be run by Travis CI" 1>&2
-	exit 1
-fi
+#if [[ -z "$TRAVIS" ]]; then
+#	echo "Script is only to be run by Travis CI" 1>&2
+#	exit 1
+#fi
 
 if [[ -z "$WP_ORG_PASSWORD" ]]; then
 	echo "WordPress.org password not set" 1>&2
@@ -43,7 +43,7 @@ if [ $error == 0 ]; then
 fi
 
 cd "$PLUGIN_BUILDS_PATH"
-# Remove any unzipped dir so we start from scratch
+# Remove any unzipped dir so wwoo-oyst (4).zipe start from scratch
 rm -fR "$PLUGIN"
 # Unzip the built plugin
 unzip -q -o "$ZIP_FILE"
