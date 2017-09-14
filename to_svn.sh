@@ -13,7 +13,7 @@ MAINFILE="$PLUGIN_SLUG.php"
 # Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
 PLUGINVERSION=`grep "Version:" $PLUGINDIR/$MAINFILE | awk -F' ' '{print $NF}' | tr -d '\r'`
 echo "$MAINFILE version: $PLUGINVERSION"
-READMEVERSION=`grep "^Stable tag:" $PLUGINDIR/readme.txt | awk -F' ' '{print $NF}' | tr -d '\r'`
+READMEVERSION=`grep "^Stable tag:" $PLUGINDIR/README.txt | awk -F' ' '{print $NF}' | tr -d '\r'`
 echo "readme.txt version: $READMEVERSION"
 
 if [ "$READMEVERSION" = "trunk" ]; then
