@@ -42,7 +42,6 @@ svn update --quiet $SVNPATH/trunk --set-depth infinity
 
 
 
-
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
 # Delete all files that should not now be added.
