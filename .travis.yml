@@ -8,13 +8,13 @@ php:
   - 7.0
 
 script:
-  - "/lib/get-sdk.sh"
+  - "./lib/get-sdk.sh"
 
 before_deploy:
-  - "before_deploy.sh"
+  - "./before_deploy.sh"
 
 after_deploy:
-  - "deploy.sh"
+  - "./deploy.sh"
 
 deploy:
   provider: releases
