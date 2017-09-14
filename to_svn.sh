@@ -44,4 +44,4 @@ rm -rf trunk/woo-oyst *.sh *.yml
 
 
 svn add trunk/
-svn commit -m "test" --username $SVNUSER --password $WP_ORG_PASSWORD
+svn commit --no-auth-cache -m "test" --username $SVNUSER --password $WP_ORG_PASSWORD
