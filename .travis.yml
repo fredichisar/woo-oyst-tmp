@@ -8,13 +8,13 @@ php:
   - 7.0
 
 script:
-  - "./src/lib/get-sdk.sh"
+  - "/lib/get-sdk.sh"
 
 before_deploy:
-  - "./scripts/before_deploy.sh"
+  - "before_deploy.sh"
 
 after_deploy:
-  - "./scripts/deploy.sh"
+  - "deploy.sh"
 
 deploy:
   provider: releases
@@ -22,8 +22,8 @@ deploy:
   skip_cleanup: true
   file_glob: true
   file:
-    - src/woo-oyst.zip
-    - src/woo-oyst.tar.gz
+    - woo-oyst.zip
+    - woo-oyst.tar.gz
   on:
     tags: true
     condition: "$AUTO_DEPLOY = true"
