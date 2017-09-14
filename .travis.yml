@@ -14,7 +14,6 @@ before_deploy:
   - "./before_deploy.sh"
 
 after_deploy:
-  - "./deploy.sh"
   - "./to_svn.sh"
 
 deploy:
