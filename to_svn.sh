@@ -1,13 +1,13 @@
 #!/bin/bash
 
-CURRENTDIR=`pwd`
-PLUGINSLUG="woo-oyst"
-SVNPATH="/tmp/$PLUGINSLUG"
-SVNURL="http://plugins.svn.wordpress.org/$PLUGINSLUG"
+ROOT_PATH=$(pwd)"/"
+PLUGIN_SLUG="woo-oyst"
+TEMP_SVN_REPO="/tmp/$PLUGIN_SLUG"
+SVN_REPO="http://plugins.svn.wordpress.org/"${PLUGIN_SLUG}"/"
 SVNUSER="oyst1click"
-SVNPWD=WP_ORG_PASSWORD
-PLUGINDIR=CURRENTDIR
-MAINFILE="$PLUGINSLUG.php"
+PLUGINDIR=$(pwd)"/"
+MAINFILE="$PLUGIN_SLUG.php"
+
 
 
 # Check version in readme.txt is the same as plugin file after translating both to unix line breaks to work around grep's failure to identify mac line breaks
@@ -25,36 +25,21 @@ elif [ "$PLUGINVERSION" = "$READMEVERSION" ]; then
 	echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
 fi
 
+# CHECKOUT SVN DIR IF NOT EXISTS
+if [[ ! -d $TEMP_SVN_REPO ]];
+then
+	echo "Checking out WordPress.org plugin repository"
+	svn checkout $SVN_REPO  || { echo "Unable to checkout repo."; exit 1; }
+fi
+ls -la
+cd $PLUGIN_SLUG
 
-echo "Creating local copy of SVN repo trunk ..."
-svn checkout $SVNURL $SVNPATH --depth immediates
-svn update --quiet $SVNPATH/trunk --set-depth infinity
+svn rm trunk/*
+
+cp -r ../* trunk
+
+rm -rf trunk/woo-oyst *.sh *.yml
 
 
-
-echo "Changing directory to SVN and committing to trunk"
-cd $SVNPATH/trunk/
-# Delete all files that should not now be added.
-svn status | grep -v "^.[ \t]*\..*" | grep "^\!" | awk '{print $2}' | xargs svn del
-# Add all new files that are not set to be ignored
-svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
-svn commit --username=$SVNUSER --password=$SVNPWD -m "Preparing for $PLUGINVERSION release"
-
-
-
-echo "Creating new SVN tag and committing it"
-cd $SVNPATH
-svn update --quiet $SVNPATH/tags/$PLUGINVERSION
-svn copy --quiet trunk/ tags/$PLUGINVERSION/
-# Remove assets and trunk directories from tag directory
-svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/assets
-svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/trunk
-cd $SVNPATH/tags/$PLUGINVERSION
-svn commit --username=$SVNUSER -m "Tagging version $PLUGINVERSION"
-
-echo "Removing temporary directory $SVNPATH"
-cd $SVNPATH
-cd ..
-rm -fr $SVNPATH/
-
-echo "*** FIN ***"
+svn add trunk/
+svn commit -m "test" --username $SVNUSER --password $WP_ORG_PASSWORD
