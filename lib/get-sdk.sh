@@ -26,9 +26,13 @@ curl -sL $GitHubProjectReleaseUrl -o $GitHub_Repo-$GitHub_Release.tar.gz
 tar -xzf $GitHub_Repo-$GitHub_Release.tar.gz
 mv $GitHub_Owner-$GitHub_Repo-* $GitHub_Repo
 echo "Oyst SDK $GitHub_Release is downloaded in $ScriptDir."
+rm $GitHub_Repo-$GitHub_Release.tar.gz
 
 # Composer Install
 cd $GitHub_Repo
 composer install --no-dev
 echo "Composer install done."
+
+mv ../oyst-php ../oyst-php-master
+
 exit 0

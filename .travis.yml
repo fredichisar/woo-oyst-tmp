@@ -15,7 +15,7 @@ before_deploy:
 
 after_deploy:
   - rm -f *.zip *.tar.gz
-  - "./to_svn.sh"
+  - "./deploy.sh"
 
 deploy:
   provider: releases
