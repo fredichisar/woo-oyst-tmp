@@ -14,7 +14,9 @@ before_deploy:
   - "./before_deploy.sh"
 
 after_deploy:
-  - "./to_svn.sh"
+  - ls -la
+  - pwd
+  - "../to_svn.sh"
 
 deploy:
   provider: releases
