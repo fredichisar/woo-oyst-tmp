@@ -16,10 +16,11 @@ fi
 WP_ORG_USERNAME="oyst1click" #ok
 PLUGIN="woo-oyst" #ok
 PROJECT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
-
+echo "project root :" PROJECT_ROOT
 PLUGIN_BUILDS_PATH="$PROJECT_ROOT/src"
+echo "project build path :" PLUGIN_BUILDS_PATH
 
-VERSION="v1.0.1"
+VERSION="v1.0.2"
 #VERSION=$(/usr/bin/php -f "$PLUGIN_BUILD_CONFIG_PATH/utils/get_plugin_version.php" "$PROJECT_ROOT" "$PLUGIN")
 #Version -> get from tag of readme file
 
