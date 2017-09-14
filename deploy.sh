@@ -30,7 +30,18 @@ then
 	echo "Checking out WordPress.org plugin repository"
 	svn checkout $SVN_REPO  || { echo "Unable to checkout repo."; exit 1; }
 fi
+
 cd $PLUGIN_SLUG
+cd tags
+touch $PLUGINVERSION
+currentVersion=$(ls * | sort -V -r | head -n 1)
+if [[ $PLUGINVERSION != $currentVersion ]];
+then
+    echo "Current tag different ($currentVersion)"
+    exit 1;
+fi
+
+cd ..
 
 svn rm trunk
 mkdir trunk
