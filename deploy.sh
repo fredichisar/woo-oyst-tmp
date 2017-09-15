@@ -54,4 +54,4 @@ rm -rf trunk/woo-oyst *.sh *.yml
 svn add trunk/
 svn commit --no-auth-cache -m "test" --username $SVNUSER --password $WP_ORG_PASSWORD
 svn copy ${SVN_REPO}/trunk \
- ${SVN_REPO}/tags/${PLUGINVERSION} -m "Release ${PLUGINVERSION}"
+ ${SVN_REPO}/tags/${PLUGINVERSION} --no-auth-cache -m "Release ${PLUGINVERSION}" --username $SVNUSER --password $WP_ORG_PASSWORD
