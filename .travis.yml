@@ -41,4 +41,4 @@ notifications:
       - "%{result}"
     on_success: always
     on_failure: always
-    rooms: oystteam:6e4bjreOFmXp3veCeGfcCJRA#4tests
+    rooms: oystteam:6e4bjreOFmXp3veCeGfcCJRA#woocommerce

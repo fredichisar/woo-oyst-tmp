@@ -5,7 +5,7 @@
  * Description: OYST plugin for woocommerce
  * Author: O Y S T
  * Author URI: http://oyst.com/
- * Version: 1.0.7
+ * Version: 1.0.8
  * Text Domain: woocommerce-oyst
  * Domain Path: /languages
  * License:
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Required minimums and constants
  */
-define( 'WC_OYST_VERSION', '1.0.4' );
+define( 'WC_OYST_VERSION', '1.0.8' );
 define( 'WC_OYST_MIN_PHP_VER', '5.6.0' );
 define( 'WC_OYST_MIN_WC_VER', '3.0.0' );
 define( 'WC_OYST_PLUGIN_URL',
