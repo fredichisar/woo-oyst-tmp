@@ -34,7 +34,7 @@ fi
 cd $PLUGIN_SLUG
 
 cd tags
-touch $PLUGINVERSION
+mkdir $PLUGINVERSION
 currentVersion=$(ls $('+([0-9]).+([0-9]).+([0-9])') | sort -V -r | head -n 1)
 if [[ $PLUGINVERSION != $currentVersion ]];
 then
@@ -53,5 +53,6 @@ rm -rf trunk/woo-oyst *.sh *.yml
 
 svn add trunk/
 svn ci --non-interactive  --username $SVNUSER --password $WP_ORG_PASSWORD -m "Deploy version $VERSION"
+
 svn copy --non-interactive --username $SVNUSER --password $WP_ORG_PASSWORD $SVN_REPO/trunk/* \
  $SVN_REPO/tags/$PLUGINVERSION  -m "Release ${PLUGINVERSION}"
