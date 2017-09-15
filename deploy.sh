@@ -33,16 +33,16 @@ fi
 
 cd $PLUGIN_SLUG
 
-#cd tags
-#touch $PLUGINVERSION
-#currentVersion=$(ls * | sort -V -r | head -n 1)
-#if [[ $PLUGINVERSION != $currentVersion ]];
-#then
- #   echo "Current tag different ($currentVersion)"
-  #  exit 1;
-#fi
+cd tags
+touch $PLUGINVERSION
+currentVersion=$(ls [[:digit:]]+.[[:digit:]]+.[[:digit:]]+ | sort -V -r | head -n 1)
+if [[ $PLUGINVERSION != $currentVersion ]];
+then
+    echo "Current tag different ($currentVersion)"
+    exit 1;
+fi
 
-#cd ..
+cd ..
 
 svn rm trunk
 mkdir trunk
@@ -52,6 +52,6 @@ rsync -av --exclude='woo-oyst' --exclude='.git' --exclude='*.sh' ../* trunk
 rm -rf trunk/woo-oyst *.sh *.yml
 
 svn add trunk/
-svn ci --non-interactive --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD svn -m "Deploy version $VERSION"
-svn copy --non-interactive --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD $SVN_REPO/trunk/* \
+svn ci --non-interactive  --username $SVNUSER --password $WP_ORG_PASSWORD -m "Deploy version $VERSION"
+svn copy --non-interactive --username $SVNUSER --password $WP_ORG_PASSWORD $SVN_REPO/trunk/* \
  $SVN_REPO/tags/$PLUGINVERSION  -m "Release ${PLUGINVERSION}"
