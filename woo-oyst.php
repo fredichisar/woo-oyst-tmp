@@ -5,7 +5,7 @@
  * Description: OYST plugin for woocommerce
  * Author: O Y S T
  * Author URI: http://oyst.com/
- * Version: 1.0.9
+ * Version: 1.0.1
  * Text Domain: woocommerce-oyst
  * Domain Path: /languages
  * License:
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Required minimums and constants
  */
-define( 'WC_OYST_VERSION', '1.0.9' );
+define( 'WC_OYST_VERSION', '1.0.1' );
 define( 'WC_OYST_MIN_PHP_VER', '5.6.0' );
 define( 'WC_OYST_MIN_WC_VER', '3.0.0' );
 define( 'WC_OYST_PLUGIN_URL',
@@ -86,7 +86,6 @@ if ( ! class_exists( 'WC_Oyst' ) ) :
 			include_once( dirname( __FILE__ ) . '/lib/oyst-php-master/vendor/autoload.php' );
 			// Init the gateway itself
 			$this->init_gateways();
-			$this->init_one_click();
 			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_oyst_script_enqueue' ) );
@@ -234,13 +233,6 @@ if ( ! class_exists( 'WC_Oyst' ) ) :
 		}
 
 		/**
-		 * Initialize 1-Click
-		 */
-		public function init_one_click(){
-			include_once( dirname( __FILE__ ) . '/includes/class-wc-oyst-one-click.php' );
-			new WC_Oyst_One_Click();
-		}
-		/**
 		 * Add the gateways to WooCommerce
 		 *
 		 * @param array $methods
@@ -249,7 +241,6 @@ if ( ! class_exists( 'WC_Oyst' ) ) :
 		 */
 		public function add_gateways( $methods ) {
 			$methods[] = 'WC_Oyst_Freepay';
-			//$methods[] = 'WC_Oyst_One_Click';
 
 			return $methods;
 		}

@@ -59,9 +59,9 @@ class WC_Oyst_Freepay_Gateway_Handler extends WC_Oyst_Freepay_Response {
 				case 'authorisation':
 					$this->handle_freepay_authorisation( $order, $post, $success );
 					break;
-				/* case 'fraud_validation':
+				case 'fraud_validation':
 					$this->handle_freepay_fraud_validation( $order, $post, $success );
-					break; */
+					break;
 				case 'cancellation':
 					$this->handle_freepay_cancellation( $order, $post, $success );
 					break;
