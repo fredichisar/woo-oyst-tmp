@@ -52,6 +52,6 @@ rsync -av --exclude='woo-oyst' --exclude='.git' --exclude='*.sh' ../* trunk
 rm -rf trunk/woo-oyst *.sh *.yml
 
 svn add trunk/
-svn commit --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD -m "Deploy version $VERSION"
-svn copy --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD ${SVN_REPO}/trunk/* \
+svn ci --non-interactive --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD svn -m "Deploy version $VERSION"
+svn copy --non-interactive --no-auth-cache --username $SVNUSER --password $WP_ORG_PASSWORD ${SVN_REPO}/trunk/* \
  ${SVN_REPO}/tags/${PLUGINVERSION}  -m "Release ${PLUGINVERSION}"
