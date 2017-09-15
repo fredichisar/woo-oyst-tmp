@@ -35,7 +35,7 @@ cd $PLUGIN_SLUG
 
 cd tags
 touch $PLUGINVERSION
-currentVersion=$($( ls $('+([0-9]).+([0-9]).+([0-9])') | sort -V -r | head -n 1)
+currentVersion=$(ls $('+([0-9]).+([0-9]).+([0-9])') | sort -V -r | head -n 1)
 if [[ $PLUGINVERSION != $currentVersion ]];
 then
     echo "Current tag different ($currentVersion)"
