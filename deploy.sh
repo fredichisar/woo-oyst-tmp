@@ -32,16 +32,17 @@ then
 fi
 
 cd $PLUGIN_SLUG
-cd tags
-touch $PLUGINVERSION
-currentVersion=$(ls * | sort -V -r | head -n 1)
-if [[ $PLUGINVERSION != $currentVersion ]];
-then
-    echo "Current tag different ($currentVersion)"
-    exit 1;
-fi
 
-cd ..
+#cd tags
+#touch $PLUGINVERSION
+#currentVersion=$(ls * | sort -V -r | head -n 1)
+#if [[ $PLUGINVERSION != $currentVersion ]];
+#then
+ #   echo "Current tag different ($currentVersion)"
+  #  exit 1;
+#fi
+
+#cd ..
 
 svn rm trunk
 mkdir trunk
