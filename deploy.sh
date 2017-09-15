@@ -54,5 +54,5 @@ rm -rf trunk/woo-oyst *.sh *.yml
 svn add trunk/
 svn ci --non-interactive  --username $SVNUSER --password $WP_ORG_PASSWORD -m "Deploy version $VERSION"
 
-svn copy --non-interactive --username $SVNUSER --password $WP_ORG_PASSWORD $SVN_REPO/trunk/* \
+svn copy --non-interactive --username $SVNUSER --password $WP_ORG_PASSWORD $SVN_REPO/trunk \
  $SVN_REPO/tags/$PLUGINVERSION  -m "Release ${PLUGINVERSION}"
